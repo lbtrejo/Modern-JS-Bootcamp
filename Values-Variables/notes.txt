@@ -1,0 +1,166 @@
+Primitive types:
+
+Number
+String
+Boolean
+Null
+Undefined
+Symbol
+BigInt
+
+
+
+Numbers
+===================
+After 16 digits of precision rounding can occur so be careful with numbers requiring lots of precision
+
+
+All expected math functions are available
+
+Addition
+5 + 3 // 8
+.25 + 3.52 // 3.77
+
+Subtraction
+3 - 7 // -4
+
+Multiplication
+2 * 5 // 10
+
+Division
+400 / 25  // 16
+
+Modulus
+14 % 4 // 2 
+
+Exponents 
+5 ** 2  // 25
+
+PEMDAS order of operations apply
+
+
+NaN
+===================
+Special value that is considered a numeric value representing something that is not a number
+
+0/0 // NaN
+1 + NaN // NaN
+
+Other interesting JS values:
+
+1/0 // infinity
+-1/0 // -infinity
+
+0
+-0
+
+Var Quiz #1
+===================
+4.5
+16
+NaN
+
+
+
+VARIABLES
+===================
+
+let
+==========
+let someName = value; (block scoped)
+
+variable names should be camelCase
+
+
+Variable incrementing
+===================
+score += 1 // score = score + 1;
+score -= 1 // score = score - 1;
+*=
+/= 
+
+
+Unary operators
+===================
+score++ // score = score for this reference, subsequent refs are score + 1
+++score // score = score + 1
+
+
+const
+==========
+once assigned cannot be re-assigned (block scoped)
+Reassignment using let or const throws an error
+
+Userful for values that will not changing
+
+
+
+Var Quiz #2
+===================
+42
+7.5
+80 (not using camelCase)
+
+
+Booleans
+===================
+True or false
+
+Be careful with typing since JS variables can switch types
+
+
+Strings
+===================
+"this is a string"
+'also a string'
+
+Ensure CONSISTENT usage of one type of quote or the other.
+
+
+Indices
+==========
+chicken
+0123456 <= Shows the indices of the string chicken (starts at 0)
+
+chicken[0] = "c"
+
+chicken.length = 7
+
+String Methods
+==========
+Built in actions performed on on with a certain string
+
+str.toUpperCase() => Parens required for the method to be called
+str.toLowerCase()
+str.trim() => Removes leading/trailing whitespace
+
+Method chaining
+=========
+str.toUpperCase().trim()
+
+
+str.indexOf('substring');  // returns index of where the substr starts
+                           // returns -1 if not found
+
+str.slice() = copies the string
+str.slice('start',[ 'end']); // returns a slice of the string from 
+                           // the starting index to the ending index (non inclusive)
+
+"superhero".slice(0, 5);  // "super"
+"superhero".slice(5, 7);  // "he"
+
+
+str.replace('str to replace', 'what to replace with') // Only does 1st occurrence
+                                                      // Multiple replaces via regex
+
+
+Var Quiz #3
+===================
+"54"
+"i"
+undefined
+"london calling"
+"todd@gmail.com"
+-1 (Stone casing is not correct)
+7
+"RAGE!"
