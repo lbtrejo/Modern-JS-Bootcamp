@@ -11,7 +11,7 @@ BigInt
 
 
 Numbers
-===================
+====================
 After 16 digits of precision rounding can occur so be careful with numbers requiring lots of precision
 
 
@@ -40,7 +40,7 @@ PEMDAS order of operations apply
 
 
 NaN
-===================
+====================
 Special value that is considered a numeric value representing something that is not a number
 
 0/0 // NaN
@@ -55,7 +55,7 @@ Other interesting JS values:
 -0
 
 Var Quiz #1
-===================
+====================
 4.5
 16
 NaN
@@ -63,7 +63,7 @@ NaN
 
 
 VARIABLES
-===================
+====================
 
 let
 ==========
@@ -73,7 +73,7 @@ variable names should be camelCase
 
 
 Variable incrementing
-===================
+====================
 score += 1 // score = score + 1;
 score -= 1 // score = score - 1;
 *=
@@ -81,7 +81,7 @@ score -= 1 // score = score - 1;
 
 
 Unary operators
-===================
+====================
 score++ // score = score for this reference, subsequent refs are score + 1
 ++score // score = score + 1
 
@@ -90,27 +90,25 @@ const
 ==========
 once assigned cannot be re-assigned (block scoped)
 Reassignment using let or const throws an error
-
 Userful for values that will not changing
 
 
-
 Var Quiz #2
-===================
+====================
 42
 7.5
 80 (not using camelCase)
 
 
 Booleans
-===================
+====================
 True or false
 
 Be careful with typing since JS variables can switch types
 
 
 Strings
-===================
+=====================
 "this is a string"
 'also a string'
 
@@ -155,7 +153,7 @@ str.replace('str to replace', 'what to replace with') // Only does 1st occurrenc
 
 
 Var Quiz #3
-===================
+=====================
 "54"
 "i"
 undefined
@@ -164,3 +162,67 @@ undefined
 -1 (Stone casing is not correct)
 7
 "RAGE!"
+
+
+String Escapes
+==========
+\n - new line
+\' - single quote
+\" - double quote
+\\ - backslash
+
+
+String Template Literals
+==========
+`I counted ${3 + 4} sheep`;   // "I counted 7 sheep"
+` Backticks alert Javascript to the usage of a template literal
+`${this gets evaluated first} before this` (Data interpolation!)
+
+let item = 'cucumbers';
+let price = 1.99;
+let quantity = 4;
+`You bought ${quantity} ${item}, at a price of $${price*quantity}.`
+
+
+Null and Undefined
+====================
+Null - INTENTIONAL absence of a value (explicit)
+Undefined - Variable has no value (declared, but not initialized)
+
+
+Math Object
+====================
+Math.PI  // 3.141529
+Math.round(4.9) // 5
+Math.floor(3.656) // 3
+Math.pow(2,4)  // 2 ** 4 = 16
+Math.random();  // Gives a random number between 0 and 1
+
+Random number from 1 - 10;
+const step1 = Math.random(); // 0.587657 (get random)
+const step2 = step1 * 10; // 5.87657 (multipy by max)
+const step3 = Math.floor(step2); // 5 (floor it to get a whole number)
+const step4 = step 3 + 1 // 6 (add the min)
+
+Math.floor((Math.random()* 10) + 1);
+
+
+Type of
+====================
+typeof 99 = "number"
+typeof true = "boolean"
+typeof "mystery" = "string"
+typeof undefined = undefined
+typeof null = "object" // weird trivia
+
+typeof is an OPERATOR (think +-*/)
+
+
+parseInt & parseFloat
+====================
+parseInt('24') // 24
+parseInt('24.242342') // 24
+parseFloat('24.242342') // 24.242342
+
+parseInt('$99') // NaN
+parseInt('99cents') // 99
