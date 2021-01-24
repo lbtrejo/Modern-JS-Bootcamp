@@ -1,0 +1,103 @@
+Boolean Logic
+====================
+
+
+Comparison Operators
+==========
+> // Greater than
+< // Less than
+>= // Greater than or equal to
+<= // Less than or equal to
+== // Equality
+!= // NOT equal
+=== // Strict equality (value and type)
+!== // Strict non-equality (value and type)
+
+String comparisons using above operators function on UNICODE values (https://en.wikipedia.org/wiki/List_of_Unicode_characters)
+
+
+== (Double equals)
+==========
+5 == 5;     // true
+'b' == 'c'; // false
+7 == '7';   // true (values are coerced into a similar type before comparison)
+0 = '';     // true
+true == false   // false
+0 == false  // true
+null == undefined   // true
+
+
+=== (Triple equals)
+==========
+2 === '2'   // false
+5 === 5     // true
+undefined === null  // false
+null === null   // true
+
+
+REPL
+Read Evaluate Print Loop (running code from the JS console in a browser)
+
+
+Truthy & Falsy values
+====================
+All values have an inherent truthy or falsy value to them
+Falsy values:
+- false
+- 0
+- "" (emtpy string)
+- null
+- undefined
+- NaN
+
+Anything else is TRUTHY!
+
+
+Logical Operators
+====================
+&& AND operator
+|| OR operator
+! NOT operator
+
+
+(true && true) // Evaluates to true
+(true && false) // Evaluates to false
+(true || true) // true
+(true || false) // true
+(false || false) // false
+
+
+NOT takes first precedence, AND takes 2nd, OR is last
+(https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence)
+
+
+
+Switch Statements
+====================
+
+switch(arg) {
+    case valueOne:
+        // logic
+        break;
+    case valueTwo: 
+        // logic
+        break;
+    case valueThree:
+        // logic
+        break;
+    case valueFour:
+    case valueFive:
+        // logic runs on both above cases since no break is above
+        break;
+    default:
+        // final logic
+}
+
+
+Ternary Operator
+====================
+
+conditon ? expIfTrue : expIfFalse
+
+let x = 4;
+(x > 2) ? "Lucky" : "Too bad"
