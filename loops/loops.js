@@ -108,3 +108,63 @@ while (target !== guess) {
     guess = Math.floor(Math.random() * 10) + 1;
 }
 console.log("Winner! Guess: " + guess);
+
+// BREAK;
+// breaks a loop condition in the block which the loop is scoped
+// Uncommon in for loops, 
+
+// FOR..OF : nice iterable loops
+let subreddits = ["politics", "pics", "nfl", "nba"];
+
+for (let sub of subreddits) {
+    console.log(sub);
+}
+
+
+// Objects are not interable
+
+const movieReviews = {
+    Arrival : 9.5,
+    Alien : 9,
+    Amelie : 8,
+    "In Bruges" : 9,
+    Amadeus : 10,
+    "Kill Bill" : 8,
+    "Little Miss Sunshine" : 8.5,
+    Coraline : 7.5
+}
+
+// Object.keys(Object) and Object.values(Object) can be used to
+// generate arrays that can be interated over
+
+for (let movie of Object.keys(movieReviews)){ 
+    console.log(movie, movieReviews[movie]);
+}
+
+const ratings = Object.values(movieReviews);
+let totalRating = 0;
+for (let rating of ratings) {
+    totalRating += rating;
+}
+let avgRating = totalRating/movieReviews.length
+console.log(avgRating);
+
+
+// FOR .. IN   loop
+// for (variable in object) { statement }
+// Loops over the keys/properties in an object.
+
+const jeopardyWinnings = {
+    regularPlay : 2522700,
+    watsonChallenge : 300000,
+    tournamentOfChampions : 500000,
+    battleOfTheDecades : 100000
+}
+
+for (let prop in jeopardyWinnings) {
+    console.log(prop);
+    console.log(jeopardyWinnings[prop]);
+}
+
+// Arrays are Objects and can use FOR..IN, but it isn't terribly useful
+// The keys will be the indices, the values the elements.
