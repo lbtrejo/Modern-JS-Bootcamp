@@ -51,3 +51,82 @@ console.log(palette[mysteryColor]); // also works
 // console.log(palette.mysteryColor);  // does not work, undefined
 
 console.log(palette["yel" + "low"]); // works, brackets evaluated first
+
+
+// Adding/updating props
+
+const userReviews = {};
+
+userReviews["queenBee49"] = 4.0;  // adding via bracket
+
+console.log(userReviews);
+
+userReviews.mrSmith78 = 3.5; // adding via dot notation
+
+console.log(userReviews);
+
+userReviews["queenBee49"] += 2;  // updated via bracket
+
+console.log(userReviews);
+
+userReviews.mrSmith78++;  // updated via dot notation
+
+console.log(userReviews);
+
+// Nested arrays and objects
+
+const student = {
+    firstName : "David",
+    lastName : "Jones",
+    strengths : [ "Music", "Art" ],
+    exams : {
+        midterm : 92,
+        final : 88
+    }
+};
+
+// find the average exam score
+let avgExamScore = (student.exams.midterm + student.exams.final) / 2;
+
+console.log(avgExamScore);
+
+const shoppingCart = [
+    {
+        product : "Jenga Classic",
+        price : 6.88,
+        quantity : 1
+    },
+    {
+        product : "Echo Dot",
+        price : 29.99,
+        quantity : 3
+    },
+    {
+        product : "Fire Stick",
+        price : 39.99,
+        quantity : 2
+    }
+];
+
+// Object and reference types
+
+const palette2 = palette;  // point to same reference;
+
+palette2.green = "#38A83E"
+
+console.log(palette);  // shows the update made in palette2, SAME REF
+
+
+// object / array equality
+let nums = [ 1, 2, 3 ];
+let mystery = [ 1, 2, 3 ];
+
+console.log(nums === mystery); // comparing the reference objects (returns FALSE)
+
+let moreNums = nums;
+
+console.log(nums === moreNums); // returns TRUE
+
+// Equality of contents must be done item by item
+// == or === will only return reference equality
+
