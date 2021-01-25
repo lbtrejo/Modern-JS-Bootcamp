@@ -1,0 +1,44 @@
+Creating Arrays
+====================
+
+let arrayExample = new Array(item, item2, item3, etc...) 
+let arrayEx2 = [];
+
+Arrays are mutable.
+Like underwear, can change often.
+
+
+Array Methods
+==========
+
+Push - add values to the end of the array
+Pop - remove the last value in the array
+Shift - remove value from the beginning of the array
+Unshift - add value to the beginning of the array
+
+You can push/unshift multiple values in a single method.
+Pushing multiples works as expected.
+Unshifting multiples places the new items at the beginning array IN THE ORDER THEY EXIST in the method args
+
+
+concat - Merge Arrays
+includes - look for a value in the array // returns bool, exact match
+indexOf - functions exactly the same as str.indexOf()
+join - creates a string from an array
+
+reverse - reverses the items in the array (last becomes first,...)
+// ^ mutates the original array 
+
+slice - copy a portion of an array
+splice - remove/replace array elements
+sort - sorts an array 
+
+
+Reference Types
+====================
+Value type variable used for storing primitive types.  When these are stored in memory the actual value is stored in the memory "slot"
+
+Reference type variable.  Think of Java's variable storage.  Everything is a reference to an object in memory.
+Arrays are an example of this.  The reference is stored in memory.  Anything else assigned to the array name would reference that same object in memory.
+
+
