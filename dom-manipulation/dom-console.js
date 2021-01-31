@@ -63,3 +63,16 @@ range.getAttribute('type'); // "range"
 range.setAttribute('type', 'radio'); // Straightforwards
 
 // Finding parent, children, or sibling elements
+
+const firstLI = document.querySelector('li');
+
+console.dir(firstLI);
+
+firstLI.parentElement; // UL
+firstLI.parentElement.parentElement; // BODY
+
+const ul = document.querySelector('ul');
+
+ul.children; // Array-like HTMLCollection showing all LI children of the UL
+
+const thirdLI = firstLI.nextElementSibiling.nextElementSibling;
