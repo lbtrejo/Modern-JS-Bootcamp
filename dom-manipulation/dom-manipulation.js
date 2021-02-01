@@ -89,4 +89,29 @@ newLink.href = 'https://www.youtube.com/watch?v=S5_4wPW6jJQ';
 
 const firstP = document.querySelector('p');
 
+const newLI = document.createElement('li');
+
+newLI.innerText = 'NEW LI SO COOL';
+
 firstP.appendChild(newLink);
+
+// Append, Prepend, and insertBefore
+
+const firstUL = document.querySelector('ul');
+
+firstUL.insertBefore(newLink, todo);
+
+// parent.insertBefore('newThing', 'thingItGoesBefore');
+
+const lastLI = document.querySelectorAll('li.todo')[2];
+
+firstUL.insertBefore(newLI, lastLI);
+
+// insertAdjacentElement is also an option
+// targetElement.insertAdjacentElement([position], 'newElement')
+// postion is a string of 'beforebegin', 'afterbegin', 'beforeend', 'afterend'
+// Not popular due to memorizing the string, but can be useful
+
+firstP.append(newLink, newImg);  // makes the new elements the last children of the parent target
+
+firstP.prepend(newLI);  // same idea, but first children
