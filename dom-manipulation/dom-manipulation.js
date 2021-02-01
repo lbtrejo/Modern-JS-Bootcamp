@@ -17,15 +17,26 @@ allLis.forEach((li, idx) => {
 // Style property only contains styles that have been set inline
 
 const h1 = document.querySelector('h1');
+const li = document.querySelector('li');
 
 h1.style; // EMPTY because no styles are set inline HTML
 
-h1.style.color = 'orchid'; // sets the inline style to be orchid
+// h1.style.color = 'orchid'; // sets the inline style to be orchid
 
 // h1.style.background-color = 'green';  // This will not work.  CSS properties are kebab-case
 // - is not a valid identifier character in JS, so all styles become camelCased;
 
-h1.style.backgroundColor = 'green'; // This works.
+// h1.style.backgroundColor = 'green'; // This works.
 
 // Inline styles override class based styling.
 // This is the forEach loop above functions and overrides the teal styling of the classes.
+
+let styles = getComputedStyle(li);
+
+styles.color; // returns teal as set by the special class on the element
+
+const compStyles = getComputedStyle(h1);
+
+compStyles.color;  // returns what is actually going on for the page
+
+// getComputedStyle returns a massive object for every computed CSS style that is being applied to an element
