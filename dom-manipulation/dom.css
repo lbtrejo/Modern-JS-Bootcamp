@@ -3,11 +3,6 @@ h1 {
     font-size: 60px;
 }
 
-h1:hover {
-    color: orange;
-    font-size: 80px;
-}
-
 #car-img {
     width: 250px
 }
@@ -20,4 +15,19 @@ h1:hover {
 
 input[type='password'] {
     height: 50px;
+}
+
+.todo {
+    font-size: 30px;
+    color: olive;
+}
+
+.done {
+    color: grey;
+    text-decoration: line-through;
+    opacity: 50%;
+}
+
+.image {
+    width: 250px;
 }

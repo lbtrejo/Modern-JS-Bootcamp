@@ -5,10 +5,10 @@ const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
 //     allLis[i].innerText = 'WE ARE THE CHAMPIONS';
 // }
 
-allLis.forEach((li, idx) => {
-    const color = colors[idx];
-    li.style.color = color;
-});
+// allLis.forEach((li, idx) => {
+//     const color = colors[idx];
+//     li.style.color = color;
+// });
 
 // Select a group, loop, manipulate each loop.
 
@@ -40,3 +40,53 @@ const compStyles = getComputedStyle(h1);
 compStyles.color;  // returns what is actually going on for the page
 
 // getComputedStyle returns a massive object for every computed CSS style that is being applied to an element
+
+// Manipulating classes 
+
+const todo = document.querySelector('#todos .todo'); // Grabs the first todo classed element in the #todos parent
+
+// Create a class to be added when the 'x' button is clicked
+// done class has been added for this purpose. There are a couple of ways to add the class 
+
+//todo.getAttribute('class');  // returns todo
+
+// todo.setAttribute('class', 'done') // replaces todo with done, not ideal
+
+// todo.setAttribute('class', 'done todo'); // also not ideal, hard coding two props, but if there are 5 classes, this would be a bad practice
+
+todo.classList.remove('done');  // removes the 'done' class
+
+todo.classList.add('done'); // add, duh
+
+todo.classList.toggle('done');  // add if removed and vice versa.
+// returns 'true' if added and 'false' if removed, neat!
+
+// the 'classlist' property has quite a few useful methods
+
+const newH2 = document.createElement('h2');  //Adds a blank h2 element
+
+newH2.innerText = 'I like animals!';
+
+const section = document.querySelector('section'); //
+
+section.appendChild(newH2);
+
+// new unsplash img 
+// https://images.unsplash.com/photo-1612038032672-b94a10ce7ebd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80
+
+const newImg = document.createElement('img');
+
+newImg.src = 'https://images.unsplash.com/photo-1612038032672-b94a10ce7ebd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80';
+
+document.body.appendChild(newImg);
+
+newImg.classList.toggle('image');
+
+const newLink = document.createElement('a');
+
+newLink.innerText = 'Click Me';
+newLink.href = 'https://www.youtube.com/watch?v=S5_4wPW6jJQ';
+
+const firstP = document.querySelector('p');
+
+firstP.appendChild(newLink);
