@@ -115,3 +115,16 @@ firstUL.insertBefore(newLI, lastLI);
 firstP.append(newLink, newImg);  // makes the new elements the last children of the parent target
 
 firstP.prepend(newLI);  // same idea, but first children
+
+// Removing elements
+// removeChild() => older, works in IE
+// remove() => new, does not work in IE
+const lastUL = document.querySelector('section ul');
+
+const peasLI = document.querySelectorAll('li.special')[1];
+
+// Removing a child requires the parent node
+const deleted = lastUL.removeChild(peasLI);
+
+// Remove just requires the node itself.
+h1.remove();
