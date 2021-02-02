@@ -1,6 +1,6 @@
 const spursGames = [{
     awayTeam: {
-        team: 'Golden State',
+        team: 'Memphis',
         points: 119,
         isWinner: false
     },
@@ -17,7 +17,7 @@ const spursGames = [{
         isWinner: false
     },
     homeTeam: {
-        team: 'Dallas',
+        team: 'Memphis',
         points: 111,
         isWinner: true
     }
@@ -29,14 +29,14 @@ const spursGames = [{
         isWinner: true
     },
     homeTeam: {
-        team: 'Boston',
+        team: 'Memphis',
         points: 114,
         isWinner: false
     }
 },
 {
     awayTeam: {
-        team: 'Phoenix',
+        team: 'Memphis',
         points: 107,
         isWinner: false
     },
@@ -48,7 +48,7 @@ const spursGames = [{
 },
 {
     awayTeam: {
-        team: 'Houston',
+        team: 'Memphis',
         points: 130,
         isWinner: false
     },
@@ -59,15 +59,21 @@ const spursGames = [{
     }
 }];
 
-const ulParent = document.createElement('ul');
+const makeChart = (games, targetTeam) => {
+    const ulParent = document.createElement('ul');
+    for(let game of games) {
+        const gameLi = document.createElement('li');
+        gameLi.innerHTML = getScoreLine(game);        
+        gameLi.classList.add(isWinner(game, targetTeam) ? 'win' : 'loss'); 
+        ulParent.append(gameLi);
+    }   
+    return ulParent;
+}
 
-document.body.prepend(ulParent);
-
-for(let game of spursGames) {
-    const { homeTeam, awayTeam } = game;
+const getScoreLine = ({ homeTeam, awayTeam }) => {
     const { team: hTeam, points: hPoints } = homeTeam;
     const { team: aTeam, points: aPoints } = awayTeam;
-    const gameLi = document.createElement('li');
+    const teamNames = `${aTeam} @ ${hTeam} `
     let scoreLine;
 
     if (aPoints > hPoints) {
@@ -75,12 +81,20 @@ for(let game of spursGames) {
     } else {
         scoreLine = `${aPoints} - <b>${hPoints}</b>`;
     }
-    
-    const spurs = hTeam === 'San Antonio' ? homeTeam : awayTeam;
-    console.log(spurs);
-    gameLi.classList.add(spurs.isWinner ? 'win' : 'loss'); 
-    const teamNames = `${aTeam} @ ${hTeam} `
-    gameLi.innerHTML = `${teamNames} ${scoreLine}`
-    ulParent.append(gameLi);
+    return `${teamNames} ${scoreLine}`;
 }
 
+const isWinner = ({ homeTeam, awayTeam }, targetTeam) => {
+    const target = homeTeam.team === targetTeam ? homeTeam : awayTeam;
+    return target.isWinner;
+}
+
+const sasSection = document.querySelector('#sas');
+const memSection = document.querySelector('#mem');
+
+
+const chart1 = makeChart(spursGames, 'San Antonio');
+sasSection.appendChild(chart1);
+
+const chart2 = makeChart(spursGames, 'Memphis');
+memSection.appendChild(chart2);
