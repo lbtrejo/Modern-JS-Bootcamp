@@ -53,8 +53,8 @@ const container = document.querySelector('#boxes');
 
 const h1 = document.querySelector('h1');
 
-const printColor = function () {
-    
+const printColor = function (event) {
+    console.log(event);
     // console.log(this);
     // console.log(this.style.backgroundColor);
     h1.style.color = this.style.backgroundColor;
@@ -71,3 +71,36 @@ for (let color of colors) {
 h1.addEventListener('mouseover', function () {
     console.log(this.innerText);
 })
+
+// simple key event listener
+
+// document.body.addEventListener('keypress', function (e) {
+//     console.log(e);
+// });
+
+const input = document.querySelector('#username');
+
+input.addEventListener('keydown', function (e) {
+    console.log('key down');
+})
+
+// keypress - fires when a viewable character is used on the keyboard (shift, cmd, alt - don't fire)
+// keydown - when any key is pushed down
+// keyup - when any key is released after being pushed down
+
+const addItemInput = document.querySelector('#addItem');
+const itemsUL = document.querySelector('#items');
+
+addItemInput.addEventListener('keypress', function (e) {
+    // console.log(e);
+    if (e.key === 'Enter') {
+        // add new item to list
+        if (!this.value) return;
+        console.log(this.value);
+        const newItem = document.createElement('li');
+        newItem.innerText = this.value;
+        itemsUL.append(newItem);
+        this.value = '';
+    }
+})
+
