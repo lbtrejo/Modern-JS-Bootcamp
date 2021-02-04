@@ -61,3 +61,6 @@ moveX(btn, 100, 1000, () => {
     // failure
     alert('Cannot move further');
 })
+
+// A promise is an object representing the eventual completion or failure of an asyunchronous operation
+
