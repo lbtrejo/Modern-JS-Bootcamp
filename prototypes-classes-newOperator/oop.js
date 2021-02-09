@@ -174,3 +174,36 @@ const c1 = new Color(255, 67, 89, 'tomato');
 const white = new Color(255, 255, 255, 'white');
 
 
+// Extends, Super, and Sub-classes
+
+class Pet {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    eat () {
+        return `${this.name} is eating!!!`;
+    }
+}
+
+class Cat extends Pet {
+    constructor(name, age, livesLeft = 9) {  // Custom cat constructor that relies on the parent constructor via the SUPER keyword
+        super(name, age);
+        this.livesLeft = livesLeft;
+    }
+    meow () {
+        return 'MEOWWW!!!!';
+    }
+}
+
+class Dog extends Pet {
+    woof () {
+        return 'WOOOOF!!!';
+    }
+    eat () {
+        return `${this.name} scarfs their food!!`
+    }
+}
+
+const leo = new Cat('Leo', 5);
+const bobo = new Dog('Boris', 6);
