@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <script src="timer.js" defer></script>
+    <script src="index.js" defer></script>
+</head>
+<body>
+    <div class="timer">
+        <div class="controls">
+            <input type="text" id="duration" value="30" />
+            <div>
+                <button id="start"><i class="fas fa-play"></i></button>
+                <button id="pause"><i class="fas fa-pause"></i></button>
+            </div>
+        </div>
+        <svg class="dial">
+            <circle 
+                r="190" 
+                cx="0" 
+                cy="200"
+                fill="transparent"
+                stroke="green"
+                stroke-width="15"
+                transform="rotate(-90 100 100)"  
+            />
+        </svg>
+    </div>
+</body>
+</html>
+
+<!-- circle props:
+        stroke-dasharray = how large should the 'ticks' around the circle be, larger = more fill
+        stroke-dashoffset = negative value to ensure the whitespace is added 
+        in a clockwise rotation as the timer ticks down 
+        transform = rotate the circle 90 degrees counter clockwise
+                    ensure the center of rotation is at (100, 100), not the origin of (0, 0)[top left of circle]
+    -->
