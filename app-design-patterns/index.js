@@ -12,19 +12,24 @@ const fetchData =  async (searchTerm) => {
     console.log(response.data);
 };
 
-// fetchData();
-
 const input = document.querySelector('input');
 
-let timeoutId;
+// Make debounce a higher order function that both ACCEPTS and RETURNS a function
+
+const debounce = (func, delay = 1000) => {
+    let timeoutId;
+    return (...args) => {
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+        }
+        timeoutId = setTimeout(() => {
+            func.apply(null, args);
+        }, delay)
+    };
+};
 
 const onInput = (event) => {
-    if(timeoutId) {
-        clearTimeout(timeoutId);
-    }
-    timeoutId = setTimeout(() => {
-        fetchData(event.target.value);
-    }, 500)
-}
+    fetchData(event.target.value);
+};
 
-input.addEventListener('input', onInput)
+input.addEventListener('input', debounce(onInput, 500));
