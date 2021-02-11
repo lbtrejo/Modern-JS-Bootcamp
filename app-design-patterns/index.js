@@ -1,30 +1,33 @@
 const baseURL = 'http://www.omdbapi.com/';
-const fetchData =  async (searchTerm) => {
-    const response = await axios.get(baseURL, {
-        params: {
-            apikey: omdbApiKey,
-            s: searchTerm
-            // i: 'tt0848228'
+
+createAutoComplete({
+    root: document.querySelector('.autocomplete'),
+    renderOption(movie) {
+        const imgSrc = movie.Poster === 'N/A' ? '' : movie.Poster;
+        return `
+            <img src="${imgSrc}" />
+            ${movie.Title} (${movie.Year})
+        `;
+    },
+    onOptionSelect(movie) {
+        onMovieSelect(movie);
+    },
+    inputValue(movie) {
+        return movie.Title;
+    },
+    async fetchData (searchTerm) {
+        const response = await axios.get(baseURL, {
+            params: {
+                apikey: omdbApiKey,
+                s: searchTerm
+            }
+        })
+        if (response.data.Error){
+            return [];
         }
-    })
-    if (response.data.Error){
-        return [];
+        return response.data.Search
     }
-
-    return response.data.Search
-};
-
-createAutoComplete({
-    root: document.querySelector('.autocomplete')
 });
-
-createAutoComplete({
-    root: document.querySelector('.autocomplete-two')
-});
-
-createAutoComplete({
-    root: document.querySelector('.autocomplete-three')
-})
 
 const onMovieSelect = async movie => {
     const response = await axios.get(baseURL, {
@@ -33,7 +36,6 @@ const onMovieSelect = async movie => {
             i: movie.imdbID
         }
     })
-    console.log(response.data);
     document.querySelector('#summary').innerHTML = movieTemplate(response.data);
 }
 
