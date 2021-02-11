@@ -7,6 +7,9 @@ const fetchData =  async (searchTerm) => {
             // i: 'tt0848228'
         }
     })
+    if (response.data.Error){
+        return [];
+    }
 
     return response.data.Search
 };
@@ -14,7 +17,15 @@ const fetchData =  async (searchTerm) => {
 const input = document.querySelector('input');
 const onInput = async (event) => {
     const movies = await fetchData(event.target.value);
-    console.log(movies)
+
+    for (let movie of movies) {
+        const movieDiv = document.createElement('div');
+        movieDiv.innerHTML = `
+        <img src="${movie.Poster}" />
+        <h1>${movie.Title} (${movie.Year})</h1>
+        `;
+        document.querySelector('#target').appendChild(movieDiv);
+    }
 };
 
 input.addEventListener('input', debounce(onInput, 500));
