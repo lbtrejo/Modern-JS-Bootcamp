@@ -1,4 +1,4 @@
-const baseURL = 'http://www.omdbapi.com/';
+const baseURL = 'https://www.omdbapi.com/';
 
 const autoCompleteConfig = {
     renderOption(movie) {
