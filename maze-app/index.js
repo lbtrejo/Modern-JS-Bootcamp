@@ -1,4 +1,7 @@
-const { Engine, Render, Runner, World, Bodies } = Matter;
+const { Engine, Render, Runner, World, Bodies, MouseConstraint, Mouse } = Matter;
+
+const width = 800;
+const height = 600;
 
 const engine = Engine.create();
 const { world } = engine;
@@ -6,12 +9,16 @@ const render = Render.create({
     element: document.body,
     engine: engine,
     options: {
-        width: 800,
-        height: 600
+        wireframes: false,
+        width,
+        height
     }
 });
 Render.run(render);
 Runner.run(Runner.create(), engine);
+World.add(world, MouseConstraint.create(engine, {
+    mouse: Mouse.create(render.canvas)
+}))
 
 // Walls
 const walls = [
@@ -20,5 +27,26 @@ const walls = [
     Bodies.rectangle(400, 600, 800, 40, { isStatic: true}),
     Bodies.rectangle(0, 300, 40, 600, { isStatic: true})
 ]
+
+// Random shapes
+for (let i = 0; i < 40; i++){
+    const randCoord = (pos) => {
+        return Math.random() * pos;
+    }
+    if (Math.random() > 0.5) {
+        World.add(world, Bodies.rectangle(randCoord(width), randCoord(height), 50, 50, {
+            render: {
+                fillStyle: 'red'
+            }
+        }));
+    } else {
+        World.add(world, Bodies.circle(randCoord(width), randCoord(height), 35, {
+            render: {
+                fillStyle: 'green'
+            }
+        }));
+    }
+    
+}
 
 World.add(world, walls);
