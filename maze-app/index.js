@@ -1,4 +1,4 @@
-const { Engine, Render, Runner, World, Bodies,Body } = Matter;
+const { Engine, Render, Runner, World, Bodies, Body, Events } = Matter;
 
 const cells = 5;
 const width = 600;
@@ -34,7 +34,6 @@ const walls = [
 World.add(world, walls);
 
 // Maze generation
-
 const shuffle = (arr) => {
     let counter = arr.length;
 
@@ -122,7 +121,10 @@ horizontals.forEach((row, rowIndex) => {
             rowIndex * unitLength + unitLength,
             unitLength,
             10,
-            { isStatic: true}
+            { 
+                isStatic: true,
+                label: 'wall'
+            }
         );
 
         World.add(world, wall);
@@ -140,7 +142,10 @@ verticals.forEach((row, rowIndex) => {
             rowIndex * unitLength + unitLength / 2,
             10,
             unitLength,
-            { isStatic: true }
+            { 
+                isStatic: true,
+                label: 'wall'
+            }
         );
     
         World.add(world, wall);
@@ -154,7 +159,10 @@ const goal = Bodies.rectangle(
     height - unitLength / 2,
     unitLength * .7,
     unitLength * .7,
-    { isStatic: true }
+    {   
+        isStatic: true,
+        label: 'goal'
+    }
 );
 World.add(world, goal)
 
@@ -163,6 +171,9 @@ const ball = Bodies.circle(
     unitLength / 2,
     unitLength / 2,
     unitLength / 4,
+    {
+        label: 'ball'
+    }
 )
 World.add(world, ball);
 
@@ -194,3 +205,20 @@ document.addEventListener('keydown', event => {
         })
     }
 })
+
+// Win Condition
+
+Events.on(engine, 'collisionStart', event => {
+    event.pairs.forEach((collision) => {
+        const labels = ['ball', 'goal'];
+
+        if(labels.includes(collision.bodyA.label) && labels.includes(collision.bodyB.label)) {
+            world.gravity.y = 1;
+            world.bodies.forEach((body) => {
+                if (body.label === 'wall') {
+                    Body.setStatic(body, false);
+                }
+            })
+        }
+    })
+});
