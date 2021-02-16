@@ -7,5 +7,7 @@ document.querySelector('form').addEventListener('submit', event => {
     const encodedData = btoa(input.value);
     console.log(encodedData);
 
-    document.querySelector('#link-input').value = encodedData;
+    const linkInput = document.querySelector('#link-input');
+    linkInput.value = `${window.location}#${encodedData}`;
+    linkInput.select();
 })
