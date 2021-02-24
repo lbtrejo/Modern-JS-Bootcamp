@@ -13,9 +13,7 @@ document.querySelector('form').addEventListener('submit', event => {
     document.querySelector('#link-form').classList.remove('hide')
 
     const input = document.querySelector('#message-input');
-
     const encodedData = btoa(input.value);
-
     const linkInput = document.querySelector('#link-input');
     linkInput.value = `${window.location}#${encodedData}`;
     linkInput.select();
