@@ -7,7 +7,7 @@
 
 require('./myscript.js');
 
-console.log(require.cache);
+// console.log(require.cache);
 
 // Node Debugging
 
