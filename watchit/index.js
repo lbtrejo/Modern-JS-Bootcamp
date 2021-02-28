@@ -24,8 +24,8 @@ program
 
         chokidar.watch('.')
             .on('add', start)
-            .on('change', () => start)
-            .on('unlink', () => start);
+            .on('change', start)
+            .on('unlink', start);
     });
 
 program.parse(process.argv);
