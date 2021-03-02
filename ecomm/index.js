@@ -1,6 +1,9 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // setup a route handler for a get on the root
 app.get('/', (request, response) => {
@@ -17,24 +20,8 @@ app.get('/', (request, response) => {
     `);
 });
 
-const bodyParser = (req, res, next) => {
-    if (req.method === 'POST') {
-        req.on('data', (data) => {
-            const parsed = data.toString('utf8').split('&');
-            const formData = {}; // initialize a formData object
-            for (const pair of parsed) {
-                // iterate over the parsed data array and create key:value pairs to add to formData
-                const [key, value] = pair.split('=');
-                formData[key] = value;
-            }
-            req.body = formData;
-            next(); // move on to the next middlewear function or (req, res) function
-        });
-    }
-};
-
 // setup a route handler for posting the sign up form data to
-app.post('/', bodyParser, (req, res) => {
+app.post('/', (req, res) => {
     console.log(req.body);
     res.send('Account Created!!!');
 });
