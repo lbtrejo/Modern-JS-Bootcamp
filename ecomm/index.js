@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const usersRepo = require('./repositories/users');
 
 const app = express();
 
@@ -21,9 +22,19 @@ app.get('/', (request, response) => {
 });
 
 // setup a route handler for posting the sign up form data to
-app.post('/', (req, res) => {
-    console.log(req.body);
-    res.send('Account Created!!!');
+app.post('/', async (req, res) => {
+    const { email, password, passwordConfirmation } = req.body;
+    const existingUser = await usersRepo.getOneBy({ email });
+
+    if (existingUser) {
+        return res.send('Email in use');
+    }
+    if (password !== passwordConfirmation) {
+        return res.send('Passwords do not match');
+    }
+    await usersRepo.create({ email, password });
+    const dbUser = await usersRepo.getOneBy({ email });
+    res.send(`Account created with id: ${dbUser.id}`);
 });
 
 app.listen(3000, () => {
