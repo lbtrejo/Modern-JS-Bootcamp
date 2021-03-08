@@ -29,6 +29,7 @@ class UsersRepository {
         // write the update records array to this.filename
         await this.writeAll(records);
         // encoding defaults to utf8 and can be ommitted as an option if that encoding is fine
+        return attrs;
     }
 
     async writeAll(records) {
