@@ -6,9 +6,9 @@ const signinTemplate = require('../../views/admin/auth/signin');
 const router = express.Router();
 
 // setup a route handler for a get on the root
-router.get('/signup', (request, response) => {
+router.get('/signup', (req, res) => {
     // normally noted as req and res
-    response.send(signupTemplate({ request }));
+    res.send(signupTemplate({ req }));
 });
 
 // setup a route handler for posting the sign up form data to
