@@ -76,8 +76,9 @@ app.post('/signin', async (req, res) => {
         return res.send('Email not found');
     }
 
+    const validPassword = await usersRepo.comparePasswords(existingUser.password, password);
     // verify passwords match
-    if (existingUser.password !== password) {
+    if (!validPassword) {
         return res.send('Invalid password');
     }
     // issue session cookie
