@@ -1,4 +1,5 @@
 const util = require('util');
+const crypto = require('crypto');
 const Repository = require('./repository');
 
 const scrypt = util.promisify(crypto.scrypt);

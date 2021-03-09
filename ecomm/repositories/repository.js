@@ -39,7 +39,7 @@ module.exports = class Repository {
         records.push(attrs);
         await this.writeAll(records);
 
-        return record;
+        return attrs;
     }
 
     async delete(id) {
