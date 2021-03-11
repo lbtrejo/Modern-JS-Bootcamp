@@ -22,7 +22,7 @@ module.exports = ({ errors }) => layout({
 
                     <div class="field">
                         <label class="label">Image</label>
-                        <input type="file" class="input" name="image">
+                        <input type="file" name="image">
                     </div>
                     <br />
                     <button class="button is-primary">Create</button>

@@ -1,5 +1,4 @@
 const express = require('express');
-const { validationResult } = require('express-validator');
 
 const { handleErrors } = require('./middlewares');
 const usersRepo = require('../../repositories/users');
@@ -26,8 +25,7 @@ router.post(
         const dbUser = await usersRepo.create({ email, password });
 
         req.session.userId = dbUser.id;
-
-        return res.send(`Account created with id: ${dbUser.id}`);
+        return res.redirect('/admin/products');
     },
 );
 
@@ -50,7 +48,7 @@ router.post(
 
         req.session.userId = existingUser.id;
 
-        return res.send('You are signed in');
+        return res.redirect('/admin/products');
     },
 );
 
