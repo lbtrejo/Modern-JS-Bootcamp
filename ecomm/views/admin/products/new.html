@@ -1,0 +1,26 @@
+<div className="columns is-centered">
+    <div className="column is-half">
+        <h1 className="subtitle">Create a Product</h1>
+
+        <form method="POST" enctype="multipart/form-data">
+            <div className="field">
+                <label className="label">Title</label>
+                <input type="text" className="input" placeholder="Title" name="title">
+                <p className="help is-danger">${getError(errors, 'title')}</p>
+            </div>
+
+            <div className="field">
+                <label className="label">Price</label>
+                <input type="text" className="input" placeholder="Price" name="price">
+                <p className="help is-danger">${getError(errors, 'price')}</p>
+            </div>
+
+            <div className="field">
+                <label className="label">Image</label>
+                <input type="file" className="input" name="image">
+            </div>
+            <br />
+            <button className="button is-primary">Create</button>
+        </form>
+    </div>
+</div>
