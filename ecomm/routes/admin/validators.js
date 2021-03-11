@@ -55,5 +55,6 @@ module.exports = {
         .trim()
         .isLength({ min: 5, max: 40 })
         .withMessage('Title must be between 5 and 40 characters'),
-    requirePrice: check('price').trim().toFloat().isFloat({ min: 1 }),
+    requirePrice: check('price').trim().toFloat().isFloat({ min: 1 })
+        .withMessage('Must be a number greater than 1'),
 };

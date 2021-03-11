@@ -3,7 +3,7 @@ const { getError } = require('../../helpers');
 
 module.exports = ({ errors }) => layout({
     content: `
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             <input placeholder="Title" name="title" />
             ${getError(errors, 'title')}
             <input placeholder="Price" name="price" />
