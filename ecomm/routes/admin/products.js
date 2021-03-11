@@ -19,19 +19,19 @@ router.get('/admin/products/new', (req, res) => {
 
 router.post(
     '/admin/products/new',
-    [requireTitle, requirePrice],
     upload.single('image'),
+    [requireTitle, requirePrice],
     async (req, res) => {
         const errors = validationResult(req);
 
-        console.log(req.file);
+        const image = req.file.buffer.toString('base64');
 
         if (!errors.isEmpty()) {
             return res.send(productsNewTemplate({ errors }));
         }
 
         const { title, price } = req.body;
-        const dbProduct = await productsRepo.create({ title, price });
+        const dbProduct = await productsRepo.create({ title, price, image });
 
         return res.send(`Product created with title: ${dbProduct.title} and id: ${dbProduct.id}`);
     },
