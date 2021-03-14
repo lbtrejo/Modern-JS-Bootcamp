@@ -9,4 +9,13 @@ module.exports = {
             fn(arr[index], index);
         }
     },
+    map(arr, fn) {
+        const newArr = [];
+
+        for (const index in arr) {
+            newArr.push(fn(arr[index], index));
+        }
+
+        return newArr;
+    },
 };
