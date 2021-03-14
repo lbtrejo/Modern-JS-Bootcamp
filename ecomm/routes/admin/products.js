@@ -7,7 +7,6 @@ const productsNewTemplate = require('../../views/admin/products/new');
 const productsIndexTemplate = require('../../views/admin/products/index');
 const productsEditTemplate = require('../../views/admin/products/edit');
 const { requireTitle, requirePrice } = require('./validators');
-const products = require('../../repositories/products');
 
 const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() });
@@ -45,6 +44,13 @@ router.post(
 
 router.get('/admin/products/:id/edit', requireAuth, async (req, res) => {
     console.log(req.params.id);
+    const changes = req.body;
+
+    if (req.file) {
+        changes.image = req.file.buffer.toString('base64');
+    }
+    await productsRepo.update(req.params.id, changes);
+
     const product = await productsRepo.getOne(req.params.id);
 
     if (!product) {
@@ -54,10 +60,37 @@ router.get('/admin/products/:id/edit', requireAuth, async (req, res) => {
     return res.send(productsEditTemplate({ product }));
 });
 
-router.post('/admin/products/:id/edit', requireAuth, async (req, res) => {
-    console.log(req.params.id);
-    
-    // const product = await productsRepo.getOne(req.params.id);
+router.post(
+    '/admin/products/:id/edit',
+    requireAuth,
+    upload.single('image'),
+    [requireTitle, requirePrice],
+    handleErrors(productsEditTemplate, async (req) => {
+        const product = await productsRepo.getOne(req.params.id);
+        return { product };
+    }),
+    async (req, res) => {
+        console.log(req.params.id);
+
+        const changes = req.body;
+
+        if (req.file) {
+            changes.image = req.file.buffer.toString('base64');
+        }
+        try {
+            await productsRepo.update(req.params.id, changes);
+        } catch (err) {
+            return res.send('Could not find item');
+        }
+
+        return res.redirect('/admin/products');
+    },
+);
+
+router.post('/admin/products/:id/delete', requireAuth, async (req, res) => {
+    await productsRepo.delete(req.params.id);
+
+    res.redirect('/admin/products');
 });
 
 module.exports = router;
