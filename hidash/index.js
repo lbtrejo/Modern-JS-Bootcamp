@@ -1,3 +1,5 @@
+/* eslint-disable guard-for-in */
+/* eslint-disable no-restricted-syntax */
 module.exports = {
     forEach(arr, fn) {
         // for (let i = 0; i < arr.length; i += 1) {
