@@ -1,6 +1,9 @@
 /* eslint-disable no-restricted-syntax */
 const fs = require('fs');
 const path = require('path');
+const chalk = require('chalk');
+
+const forbiddenDirs = ['node_modules']; // don't include node_modules dir
 
 class Runner {
     constructor() {
@@ -9,6 +12,7 @@ class Runner {
 
     async runTests() {
         for (const file of this.testFiles) {
+            console.log(chalk.white(`---- ${file.shortName} ----`));
             const beforeEaches = [];
             global.beforeEach = (fn) => {
                 beforeEaches.push(fn);
@@ -20,17 +24,18 @@ class Runner {
                 });
                 try {
                     fn();
-                    console.log(`PASSED - ${desc}`);
+                    console.log(chalk.green(`\tOK - ${desc}`));
                 } catch (err) {
-                    console.log(`FAILED - ${desc}`);
-                    console.log('\t', err.message);
+                    const message = err.message.replace(/\n/g, '\n\t\t');
+                    console.log(chalk.red(`\tX - ${desc}`));
+                    console.log(chalk.red('\t', message));
                 }
             };
 
             try {
                 require(file.name);
             } catch (err) {
-                console.log(err);
+                console.log(chalk.red(err));
             }
         }
     }
@@ -43,8 +48,8 @@ class Runner {
             const stats = await fs.promises.lstat(filepath);
 
             if (stats.isFile() && file.includes('.test.js')) {
-                this.testFiles.push({ name: filepath });
-            } else if (stats.isDirectory()) {
+                this.testFiles.push({ name: filepath, shortName: file });
+            } else if (stats.isDirectory() && forbiddenDirs.includes(file)) {
                 const childFiles = await fs.promises.readdir(filepath);
 
                 files.push(...childFiles.map((f) => path.join(file, f)));
