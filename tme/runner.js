@@ -2,6 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
+const render = require('./render');
 
 const forbiddenDirs = ['node_modules']; // don't include node_modules dir
 
@@ -14,6 +15,7 @@ class Runner {
         for (const file of this.testFiles) {
             console.log(chalk.white(`---- ${file.shortName} ----`));
             const beforeEaches = [];
+            global.render = render;
             global.beforeEach = (fn) => {
                 beforeEaches.push(fn);
             };
